@@ -6,6 +6,7 @@ socket = context.socket(zmq.PUSH)
 
 socket.bind("tcp://*:8000")
 print('server started...')
+
 try:
     while True:
         # получим объект видео
