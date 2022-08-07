@@ -4,7 +4,7 @@ Video stream via pyzmq
 Quick start:
 ```
 git clone https://github.com/flild/Planeta_test_task.git
-pip3 install -r requirements.txt
+pip3 install -r Planeta_test_task/requirements.txt
 ```
 Start server
 ```
