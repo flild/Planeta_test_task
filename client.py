@@ -21,6 +21,7 @@ try:
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+
 finally:
     cv2.destroyAllWindows()
     socket.close()
