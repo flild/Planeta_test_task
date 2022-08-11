@@ -13,10 +13,10 @@ def main():
     logger.debug('Сервер запущен...')
 
     try:
+        logger.info(f'Начало трансляции')
         while True:
             # получим объект видео
             cap = cv2.VideoCapture('example.mp4')
-            logger.info(f'Начало трансляции')
             while (cap.isOpened()):
                 # разбиваем по фреймам
                 ret, frame = cap.read()
