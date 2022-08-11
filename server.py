@@ -2,15 +2,21 @@ import zmq
 import cv2
 
 from loguru import logger
-
+#настройки логгера, а именно папка сохранения логов, в каком виде вести логоирование, через какое время удалять логи
 logger.add('logs/server.log', format='{time} {level} {message}', level='INFO', rotation='1 week')
 
 def main():
-    context = zmq.Context()
-    socket = context.socket(zmq.PUSH)
-    logger.debug('Создание сокета')
-    socket.bind("tcp://*:8000")
-    logger.debug('Сервер запущен...')
+    try:
+        #Создание сокета
+        context = zmq.Context()
+        socket = context.socket(zmq.PUSH)
+        #Привязка к сокету определенного хоста
+        logger.debug('Создание сокета')
+        socket.bind("tcp://*:8000")
+        logger.debug('Сервер запущен...')
+    except Exception as e:
+        logger.error(f'{e}')
+        return
 
     try:
         logger.info(f'Начало трансляции')
@@ -29,8 +35,9 @@ def main():
                     cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
                     continue
     except Exception as e:
-        logger.error(f'{Exception}')
+        logger.error(f'{e}')
     finally:
+        #закрываем сокет
         socket.close()
 
 if __name__ == '__main__':
